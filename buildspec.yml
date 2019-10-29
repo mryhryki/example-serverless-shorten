@@ -1,0 +1,10 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm i -g npm
+      - npm ci --production
+  build:
+    commands:
+      - npm run deploy
