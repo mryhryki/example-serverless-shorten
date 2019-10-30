@@ -1,9 +1,9 @@
 {
   "author": "hyiromori",
-  "description": "severless api project.",
+  "description": "severless shorten project.",
   "license": "UNLICENSED",
   "private": true,
-  "repository": "https://gitlab.com/hyiromori/hyiromori",
+  "repository": "https://github.com/hyiromori/serverless-shorten",
   "dependencies": {
     "aws-sdk": "^2.556.0",
     "log4js": "^5.3.0",

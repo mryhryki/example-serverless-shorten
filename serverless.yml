@@ -24,12 +24,8 @@ provider:
     DYNAMODB_TABLE: serverless-shorten
     NODE_ENV: production
     SERVERLESS_STAGE: ${opt:stage, 'prod'}
-    SNS_TOPIC_PREFIX: "arn:aws:sns:${self:provider.region}:#{AWS::AccountId}:"
-    TIMELINE_TABLE: Timeline-${self:provider.stage}
   apiGateway:
     minimumCompressionSize: 1024
-  apiKeys:
-    - master
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -50,7 +46,7 @@ custom:
   serverless-offline:
     port: 4000
   customDomain:
-    domainName: shorten.hyiromori.com
+    domainName: s.hyiromori.com
     basePath: ''
     certificateName: "*.hyiromori.com"
     createRoute53Record: true
@@ -59,7 +55,7 @@ custom:
 
 resources:
   Resources:
-    ApiTable:
+    ShortenTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: serverless-shorten
