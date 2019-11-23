@@ -1,25 +1,20 @@
 {
   "author": "hyiromori",
   "description": "severless shorten project.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "repository": "https://github.com/hyiromori/serverless-shorten",
   "dependencies": {
-    "aws-sdk": "^2.556.0",
-    "log4js": "^5.3.0",
-    "nodemailer": "^4.7.0",
-    "rss-parser": "^3.7.2",
-    "serverless": "^1.55.1",
+    "aws-sdk": "^2.578.0",
+    "serverless": "^1.58.0",
     "serverless-domain-manager": "^3.3.0",
     "serverless-offline": "^5.12.0",
-    "serverless-pseudo-parameters": "^2.5.0",
-    "uuid": "^3.3.3"
+    "serverless-pseudo-parameters": "^2.5.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^9.2.0",
@@ -28,7 +23,7 @@
   },
   "scripts": {
     "start": "serverless offline",
-    "lint": "eslint --fix .",
+    "lint": "eslint --fix ./handler",
     "deploy": "serverless deploy -v",
     "domain:create": "sls create_domain",
     "domain:remove": "sls delete_domain"
