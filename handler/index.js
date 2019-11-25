@@ -4,25 +4,46 @@ const html = `
 <head>
   <meta charset="UTF-8">
   <title>Shorten</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style type="text/css">
+    body { font-size: 24px; text-align: center; }
+    input { font-size: 24px; text-align: center; }
+  </style>
 </head>
 <body>
-  <input id="url" type="text" name="url" />
-  <button id="convert">変換する</button>
-  <div>
-    <a id="converted_url"></a>
+  <div class="container">
+    <h1 style="text-align: center; font-size: 36px;">URL Shortener</h1>
+    <div>
+      <input id="url" type="text" name="url" placeholder="短縮したいURLを入力" />
+    </div>
+    <div style="text-align: center;">
+      <button id="convert" class="waves-effect waves-light btn">変換する</button>
+    </div>
+    <div style="margin-top: 16px; text-align: center;">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">短縮されたURL</span>
+          <p><a id="converted_url"></a></p>
+        </div>
+      </div>
+    </div>
   </div>
+
   <script type="text/javascript">
-    const convertedUrl = document.getElementById('converted_url');
     document.getElementById('convert').onclick = () => {
-      const url = document.getElementById('url').value
-      fetch('/', { method: 'POST', body: JSON.stringify({ url })})
+      const url = document.getElementById('url').value;
+      fetch('/', { method: 'POST', body: JSON.stringify({ url }) })
         .then(res => res.json())
-        .then(json =>{
+        .then(json => {
+          const convertedUrl = document.getElementById('converted_url');
           convertedUrl.href = json.url;
           convertedUrl.textContent = json.url;
-        })
-    }
+        });
+    };
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
 `;
