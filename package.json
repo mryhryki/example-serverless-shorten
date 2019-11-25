@@ -22,9 +22,9 @@
     "eslint-plugin-standard": "^4.0.1"
   },
   "scripts": {
-    "start": "serverless offline",
+    "start": "sls offline",
     "lint": "eslint --fix ./handler",
-    "deploy": "serverless deploy -v",
+    "deploy": "sls deploy -v",
     "domain:create": "sls create_domain",
     "domain:remove": "sls delete_domain"
   }

@@ -60,19 +60,14 @@ resources:
       Properties:
         TableName: serverless-shorten
         AttributeDefinitions:
-          - AttributeName: resource
-            AttributeType: S
           - AttributeName: key
             AttributeType: S
         KeySchema:
-          - AttributeName: resource
-            KeyType: HASH
           - AttributeName: key
-            KeyType: RANGE
+            KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 3
           WriteCapacityUnits: 3
-          # BillingMode: PAY_PER_REQUEST
 
 functions:
   index:

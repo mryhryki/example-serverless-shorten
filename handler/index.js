@@ -24,22 +24,32 @@ const html = `
     <div style="margin-top: 16px; text-align: center;">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
-          <span class="card-title">短縮されたURL</span>
-          <p><a id="converted_url"></a></p>
+          <span class="card-title">短縮URL</span>
+          <p><a id="converted-url"></a></p>
+          <p id="error-message"></p>
         </div>
       </div>
     </div>
   </div>
 
   <script type="text/javascript">
+    const convertedUrl = document.getElementById('converted-url');
+    const errorMessage = document.getElementById('error-message');
+
     document.getElementById('convert').onclick = () => {
       const url = document.getElementById('url').value;
       fetch('/', { method: 'POST', body: JSON.stringify({ url }) })
         .then(res => res.json())
         .then(json => {
-          const convertedUrl = document.getElementById('converted_url');
-          convertedUrl.href = json.url;
-          convertedUrl.textContent = json.url;
+          if (json.error) {
+            convertedUrl.href = '';
+            convertedUrl.textContent = '';
+            errorMessage.textContent = json.error;
+          } else {
+            convertedUrl.href = json.url;
+            convertedUrl.textContent = json.url.replace(new RegExp('^https?://'), '');
+            errorMessage.textContent = '';
+          }
         });
     };
   </script>
@@ -50,9 +60,6 @@ const html = `
 
 module.exports.handler = async () => ({
   statusCode: 200,
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'text/html',
-  },
+  headers: { 'Content-Type': 'text/html' },
   body: html,
 });
